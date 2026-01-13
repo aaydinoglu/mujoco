@@ -337,10 +337,6 @@ def _put_model_jax(
   mesh_geomid = set()
   for g1, g2, ip in collision_driver.geom_pairs(m):
     t1, t2 = m.geom_type[[g1, g2]]
-    # check collision function exists for type pair
-    if not collision_driver.has_collision_fn(t1, t2):
-      t1, t2 = mujoco.mjtGeom(t1), mujoco.mjtGeom(t2)
-      raise NotImplementedError(f'({t1}, {t2}) collisions not implemented.')
     # margin/gap not supported for meshes and height fields
     no_margin = {mujoco.mjtGeom.mjGEOM_MESH, mujoco.mjtGeom.mjGEOM_HFIELD}
     if no_margin.intersection({t1, t2}):
