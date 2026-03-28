@@ -4596,7 +4596,7 @@ def _integrate_jax_impl(m: types.Model, d: types.Data):
       'efc__vel': d._impl.efc__vel.shape,
   }
   jf = ffi.jax_callable_variadic_tuple(
-      _step_shim,
+      _integrate_shim,
       num_outputs=96,
       output_dims=output_dims,
       vmap_method=None,
