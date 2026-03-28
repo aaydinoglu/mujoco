@@ -988,3 +988,16 @@ def step2(m: Model, d: Data):
   else:
     # note: RK4 defaults to Euler
     euler(m, d)
+
+
+@event_scope
+def integrate(m: Model, d: Data):
+  """Advance simulation."""
+  if m.opt.integrator == IntegratorType.EULER:
+    euler(m, d)
+  elif m.opt.integrator == IntegratorType.RK4:
+    rungekutta4(m, d)
+  elif m.opt.integrator == IntegratorType.IMPLICITFAST:
+    implicit(m, d)
+  else:
+    raise NotImplementedError(f"integrator {m.opt.integrator} not implemented.")
