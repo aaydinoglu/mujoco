@@ -473,3 +473,21 @@ def step(m: Model, d: Data) -> Data:
     raise NotImplementedError(f'integrator {m.opt.integrator} not implemented.')
 
   return d
+
+@named_scope
+def integrate(m: Model, d: Data) -> Data:
+  """Integration module."""
+  if m.impl == Impl.WARP and d.impl == Impl.WARP and mjxw.WARP_INSTALLED:
+    from mujoco.mjx.warp import forward as mjxw_forward  # pylint: disable=g-import-not-at-top  # pytype: disable=import-error
+    return mjxw_forward.integrate(m, d)
+
+  if m.opt.integrator == IntegratorType.EULER:
+    d = euler(m, d)
+  elif m.opt.integrator == IntegratorType.RK4:
+    d = rungekutta4(m, d)
+  elif m.opt.integrator == IntegratorType.IMPLICITFAST:
+    d = implicit(m, d)
+  else:
+    raise NotImplementedError(f'integrator {m.opt.integrator} not implemented.')
+
+  return d
