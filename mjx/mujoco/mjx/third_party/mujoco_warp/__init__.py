@@ -43,6 +43,7 @@ from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_actuation as fwd
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_position as fwd_position
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_velocity as fwd_velocity
 from mujoco.mjx.third_party.mujoco_warp._src.forward import implicit as implicit
+from mujoco.mjx.third_party.mujoco_warp._src.forward import integrate as integrate
 from mujoco.mjx.third_party.mujoco_warp._src.forward import rungekutta4 as rungekutta4
 from mujoco.mjx.third_party.mujoco_warp._src.forward import step1 as step1
 from mujoco.mjx.third_party.mujoco_warp._src.forward import step2 as step2
