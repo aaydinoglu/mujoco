@@ -32,6 +32,7 @@ from mujoco.mjx._src.forward import fwd_actuation
 from mujoco.mjx._src.forward import fwd_position
 from mujoco.mjx._src.forward import fwd_velocity
 from mujoco.mjx._src.forward import implicit
+from mujoco.mjx._src.forward import integrate
 from mujoco.mjx._src.forward import rungekutta4
 from mujoco.mjx._src.inverse import inverse
 from mujoco.mjx._src.io import create_render_context
