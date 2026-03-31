@@ -28,6 +28,7 @@ from mujoco.mjx._src.derivative import deriv_smooth_vel
 from mujoco.mjx._src.forward import euler
 from mujoco.mjx._src.forward import forward
 from mujoco.mjx._src.forward import forward_acc_and_solve
+from mujoco.mjx._src.forward import forward_pos_and_vel
 from mujoco.mjx._src.forward import fwd_acceleration
 from mujoco.mjx._src.forward import fwd_actuation
 from mujoco.mjx._src.forward import fwd_position

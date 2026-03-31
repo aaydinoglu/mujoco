@@ -494,7 +494,7 @@ def integrate(m: Model, d: Data) -> Data:
 
 @named_scope
 def forward_acc_and_solve(m: Model, d: Data) -> Data:
-  """Advance simulation."""
+  """Compute acceleration and solve."""
   if m.impl == Impl.WARP and d.impl == Impl.WARP and mjxw.WARP_INSTALLED:
     from mujoco.mjx.warp import forward as mjxw_forward  # pylint: disable=g-import-not-at-top  # pytype: disable=import-error
     return mjxw_forward.forward_acc_and_solve(m, d)
@@ -510,3 +510,19 @@ def forward_acc_and_solve(m: Model, d: Data) -> Data:
   d = sensor.sensor_acc(m, d)
 
   return d
+
+@named_scope
+def forward_pos_and_vel(m: Model, d: Data) -> Data:
+  """Forward dynamics position and velocity updates."""
+  if m.impl == Impl.WARP and d.impl == Impl.WARP and mjxw.WARP_INSTALLED:
+    from mujoco.mjx.warp import forward as mjxw_forward  # pylint: disable=g-import-not-at-top  # pytype: disable=import-error
+    return mjxw_forward.forward_pos_and_vel(m, d)
+
+  if not isinstance(m._impl, ModelJAX) or not isinstance(d._impl, DataJAX):
+    raise ValueError('forward requires JAX backend implementation.')
+
+  d = fwd_position(m, d)
+  d = sensor.sensor_pos(m, d)
+  d = fwd_velocity(m, d)
+  d = sensor.sensor_vel(m, d)
+

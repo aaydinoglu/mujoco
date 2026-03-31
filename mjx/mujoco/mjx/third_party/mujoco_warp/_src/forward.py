@@ -1010,3 +1010,26 @@ def forward_acc_and_solve(m: Model, d: Data):
 
   solver.solve(m, d)
   sensor.sensor_acc(m, d)
+
+@event_scope
+def forward_pos_and_vel(m: Model, d: Data):
+
+  energy = m.opt.enableflags & EnableBit.ENERGY
+  # TODO(team): mj_checkPos
+  # TODO(team): mj_checkVel
+  fwd_position(m, d)
+  d.sensordata.zero_()
+  sensor.sensor_pos(m, d)
+
+  if energy:
+    if m.sensor_e_potential == 0:  # not computed by sensor
+      sensor.energy_pos(m, d)
+  else:
+    d.energy.zero_()
+
+  fwd_velocity(m, d)
+  sensor.sensor_vel(m, d)
+
+  if energy:
+    if m.sensor_e_kinetic == 0:  # not computed by sensor
+      sensor.energy_vel(m, d)

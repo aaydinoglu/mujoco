@@ -39,6 +39,7 @@ from mujoco.mjx.third_party.mujoco_warp._src.derivative import deriv_smooth_vel 
 from mujoco.mjx.third_party.mujoco_warp._src.forward import euler as euler
 from mujoco.mjx.third_party.mujoco_warp._src.forward import forward as forward
 from mujoco.mjx.third_party.mujoco_warp._src.forward import forward_acc_and_solve as forward_acc_and_solve
+from mujoco.mjx.third_party.mujoco_warp._src.forward import forward_pos_and_vel as forward_pos_and_vel
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_acceleration as fwd_acceleration
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_actuation as fwd_actuation
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_position as fwd_position
