@@ -493,11 +493,11 @@ def integrate(m: Model, d: Data) -> Data:
   return d
 
 @named_scope
-def forward_skip_pos_and_vel(m: Model, d: Data) -> Data:
+def forward_acc_and_solve(m: Model, d: Data) -> Data:
   """Advance simulation."""
   if m.impl == Impl.WARP and d.impl == Impl.WARP and mjxw.WARP_INSTALLED:
     from mujoco.mjx.warp import forward as mjxw_forward  # pylint: disable=g-import-not-at-top  # pytype: disable=import-error
-    return mjxw_forward.forward_skip_pos_and_vel(m, d)
+    return mjxw_forward.forward_acc_and_solve(m, d)
 
   d = fwd_actuation(m, d)
   d = fwd_acceleration(m, d)

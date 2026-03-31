@@ -1003,7 +1003,7 @@ def integrate(m: Model, d: Data):
     raise NotImplementedError(f"integrator {m.opt.integrator} not implemented.")
 
 @event_scope
-def forward_skip_pos_and_vel(m: Model, d: Data):
+def forward_acc_and_solve(m: Model, d: Data):
 
   fwd_actuation(m, d)
   fwd_acceleration(m, d, factorize=True)

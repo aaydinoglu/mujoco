@@ -5424,7 +5424,7 @@ def integrate_vmap(unused_axis_size, is_batched, m: types.Model, d: types.Data):
 
 
 @ffi.format_args_for_warp
-def _forward_skip_pos_and_vel_shim(
+def _forward_acc_and_solve_shim(
     # Model
     nworld: int,
     M_rowadr: wp.array(dtype=int),
@@ -6290,10 +6290,10 @@ def _forward_skip_pos_and_vel_shim(
   _d.xpos = xpos
   _d.xquat = xquat
   _d.nworld = nworld
-  mjwarp.forward_skip_pos_and_vel(_m, _d)
+  mjwarp.forward_acc_and_solve(_m, _d)
 
 
-def _forward_skip_pos_and_vel_jax_impl(m: types.Model, d: types.Data):
+def _forward_acc_and_solve_jax_impl(m: types.Model, d: types.Data):
   output_dims = {
       'act_dot': d.act_dot.shape,
       'actuator_force': d.actuator_force.shape,
@@ -6389,7 +6389,7 @@ def _forward_skip_pos_and_vel_jax_impl(m: types.Model, d: types.Data):
       'efc__vel': d._impl.efc__vel.shape,
   }
   jf = ffi.jax_callable_variadic_tuple(
-      _forward_skip_pos_and_vel_shim,
+      _forward_acc_and_solve_shim,
       num_outputs=92,
       output_dims=output_dims,
       vmap_method=None,
@@ -7191,12 +7191,12 @@ def _forward_skip_pos_and_vel_jax_impl(m: types.Model, d: types.Data):
 
 @jax.custom_batching.custom_vmap
 @ffi.marshal_jax_warp_callable
-def forward_skip_pos_and_vel(m: types.Model, d: types.Data):
-  return _forward_skip_pos_and_vel_jax_impl(m, d)
+def forward_acc_and_solve(m: types.Model, d: types.Data):
+  return _forward_acc_and_solve_jax_impl(m, d)
 
 
-@forward_skip_pos_and_vel.def_vmap
+@forward_acc_and_solve.def_vmap
 @ffi.marshal_custom_vmap
-def forward_skip_pos_and_vel_vmap(unused_axis_size, is_batched, m: types.Model, d: types.Data):
-  d = forward_skip_pos_and_vel(m, d)
+def forward_acc_and_solve_vmap(unused_axis_size, is_batched, m: types.Model, d: types.Data):
+  d = forward_acc_and_solve(m, d)
   return d, is_batched[1]
