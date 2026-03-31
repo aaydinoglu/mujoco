@@ -518,11 +518,10 @@ def forward_pos_and_vel(m: Model, d: Data) -> Data:
     from mujoco.mjx.warp import forward as mjxw_forward  # pylint: disable=g-import-not-at-top  # pytype: disable=import-error
     return mjxw_forward.forward_pos_and_vel(m, d)
 
-  if not isinstance(m._impl, ModelJAX) or not isinstance(d._impl, DataJAX):
-    raise ValueError('forward requires JAX backend implementation.')
-
   d = fwd_position(m, d)
   d = sensor.sensor_pos(m, d)
   d = fwd_velocity(m, d)
   d = sensor.sensor_vel(m, d)
+
+  return d
 
