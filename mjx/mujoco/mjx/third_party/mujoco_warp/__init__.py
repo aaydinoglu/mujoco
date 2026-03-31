@@ -38,6 +38,7 @@ from mujoco.mjx.third_party.mujoco_warp._src.constraint import make_constraint a
 from mujoco.mjx.third_party.mujoco_warp._src.derivative import deriv_smooth_vel as deriv_smooth_vel
 from mujoco.mjx.third_party.mujoco_warp._src.forward import euler as euler
 from mujoco.mjx.third_party.mujoco_warp._src.forward import forward as forward
+from mujoco.mjx.third_party.mujoco_warp._src.forward import forward_skip_pos_and_vel as forward_skip_pos_and_vel
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_acceleration as fwd_acceleration
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_actuation as fwd_actuation
 from mujoco.mjx.third_party.mujoco_warp._src.forward import fwd_position as fwd_position
