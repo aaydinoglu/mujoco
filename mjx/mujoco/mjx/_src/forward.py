@@ -519,9 +519,7 @@ def forward_pos_and_vel(m: Model, d: Data) -> Data:
     return mjxw_forward.forward_pos_and_vel(m, d)
 
   d = fwd_position(m, d)
-  d = sensor.sensor_pos(m, d)
   d = fwd_velocity(m, d)
-  d = sensor.sensor_vel(m, d)
 
   return d
 
