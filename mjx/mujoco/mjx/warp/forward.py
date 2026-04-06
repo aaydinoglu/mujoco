@@ -377,6 +377,7 @@ def _forward_shim(
     act: wp.array2d(dtype=float),
     act_dot: wp.array2d(dtype=float),
     actuator_force: wp.array2d(dtype=float),
+    custom_dtorque_dv: wp.array2d(dtype=float),
     actuator_length: wp.array2d(dtype=float),
     actuator_moment: wp.array3d(dtype=float),
     actuator_velocity: wp.array2d(dtype=float),
@@ -807,6 +808,7 @@ def _forward_shim(
   _d.act = act
   _d.act_dot = act_dot
   _d.actuator_force = actuator_force
+  _d.custom_dtorque_dv = custom_dtorque_dv
   _d.actuator_length = actuator_length
   _d.actuator_moment = actuator_moment
   _d.actuator_velocity = actuator_velocity
@@ -2159,6 +2161,7 @@ def _step_shim(
     act_dot: wp.array2d(dtype=float),
     actuator_force: wp.array2d(dtype=float),
     actuator_length: wp.array2d(dtype=float),
+    custom_dtorque_dv: wp.array2d(dtype=float),
     actuator_moment: wp.array3d(dtype=float),
     actuator_velocity: wp.array2d(dtype=float),
     cacc: wp.array2d(dtype=wp.spatial_vector),
@@ -2590,6 +2593,7 @@ def _step_shim(
   _d.act = act
   _d.act_dot = act_dot
   _d.actuator_force = actuator_force
+  _d.custom_dtorque_dv = custom_dtorque_dv
   _d.actuator_length = actuator_length
   _d.actuator_moment = actuator_moment
   _d.actuator_velocity = actuator_velocity

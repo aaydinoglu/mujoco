@@ -30,6 +30,16 @@ wp.set_module_options({"enable_backward": False})
 
 
 @wp.kernel
+def add_custom_dtorque_dv(
+    custom_dtorque_dv: wp.array2d(dtype=float),
+    vel_out: wp.array2d(dtype=float),
+):
+    worldid, actid = wp.tid()
+
+    # Add custom derivative to the computed derivative
+    vel_out[worldid, actid] = vel_out[worldid, actid] + custom_dtorque_dv[worldid, actid]
+
+@wp.kernel
 def _qderiv_actuator_passive_vel(
   # Model:
   actuator_dyntype: wp.array(dtype=int),
@@ -277,6 +287,11 @@ def deriv_smooth_vel(m: Model, d: Data, out: wp.array2d(dtype=float)):
         ],
         outputs=[vel],
       )
+      wp.launch(
+              add_custom_dtorque_dv,
+              dim=(d.nworld, m.nu),
+              inputs=[d.custom_dtorque_dv, vel]
+          )
       if m.is_sparse:
         wp.launch(
           _qderiv_actuator_passive_actuation_sparse,

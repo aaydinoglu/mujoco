@@ -1736,6 +1736,7 @@ class Data:
   subtree_linvel: array("nworld", "nbody", wp.vec3)
   subtree_angmom: array("nworld", "nbody", wp.vec3)
   actuator_force: array("nworld", "nu", float)
+  custom_dtorque_dv: array("nworld", "nu", float)
   qfrc_actuator: array("nworld", "nv", float)
   qfrc_smooth: array("nworld", "nv", float)
   qacc_smooth: array("nworld", "nv", float)
