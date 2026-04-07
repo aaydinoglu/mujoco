@@ -919,7 +919,6 @@ def _forward_jax_impl(m: types.Model, d: types.Data):
   output_dims = {
       'act_dot': d.act_dot.shape,
       'actuator_force': d.actuator_force.shape,
-      'custom_dtorque_dv': d.custom_dtorque_dv.shape,
       'actuator_length': d.actuator_length.shape,
       'actuator_moment': d._impl.actuator_moment.shape,
       'actuator_velocity': d._impl.actuator_velocity.shape,
@@ -2708,7 +2707,6 @@ def _step_jax_impl(m: types.Model, d: types.Data):
       'act': d.act.shape,
       'act_dot': d.act_dot.shape,
       'actuator_force': d.actuator_force.shape,
-      'custom_dtorque_dv': d.custom_dtorque_dv.shape,
       'actuator_length': d.actuator_length.shape,
       'actuator_moment': d._impl.actuator_moment.shape,
       'actuator_velocity': d._impl.actuator_velocity.shape,

@@ -268,7 +268,6 @@ class DataWarp(PyTreeNode):
   contact__type: jax.Array
   contact__worldid: jax.Array
   crb: jax.Array
-  custom_dtorque_dv: jax.Array
   efc__D: jax.Array
   efc__J: jax.Array
   efc__Ma: jax.Array
