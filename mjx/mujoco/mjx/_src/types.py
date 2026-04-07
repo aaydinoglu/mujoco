@@ -1252,6 +1252,7 @@ class Data(PyTreeNode):
     qfrc_passive: passive force
     qfrc_actuator: actuator force
     actuator_force: actuator force in actuation space
+    custom_dtorque_dv: custom torque derivative w.r.t. velocity
     actuator_length: actuator lengths
     qfrc_smooth: smooth dynamics force
     qacc_smooth: acceleration without constraints
@@ -1307,6 +1308,7 @@ class Data(PyTreeNode):
   qfrc_passive: jax.Array
   qfrc_actuator: jax.Array
   actuator_force: jax.Array
+  custom_dtorque_dv: jax.Array
   actuator_length: jax.Array
   qfrc_smooth: jax.Array
   qacc_smooth: jax.Array

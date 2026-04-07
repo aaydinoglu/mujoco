@@ -608,6 +608,7 @@ def _make_data_public_fields(m: types.Model) -> Dict[str, Any]:
       'cam_xmat': (m.ncam, 3, 3, float_),
       'subtree_com': (m.nbody, 3, float_),
       'actuator_force': (m.nu, float_),
+      'custom_dtorque_dv': (m.nu, float_),
       'actuator_length': (m.nu, float_),
       'qfrc_bias': (m.nv, float_),
       'qfrc_gravcomp': (m.nv, float_),
